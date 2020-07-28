@@ -1,25 +1,19 @@
+import pytest
 from ..parts import engines
 
 
-def test_LR89_5():
-    engine = engines.LR89_5()
-    assert engine.dry_mass == 1.75
+@pytest.mark.parametrize(
+    "engine_name, expected_vals",
+    [
+        ('LR89-5', (205., 1.75, 256)),
+        ('LR89-7', (236., 1.75, 255)),
+        ('RS56', (261., 1.75, 263))
+    ]
+)
+def test_engine(engine_name, expected_vals):
+    engine = engines.Engine(engine_name)
     assert engine.propellant_mass == 0.
-    assert engine.thrust == 205.
-    assert engine.isp == 256
+    assert engine.thrust == expected_vals[0]
+    assert engine.dry_mass == expected_vals[1]
+    assert engine.isp == expected_vals[2]
 
-
-def test_LR89_7():
-    engine = engines.LR89_7()
-    assert engine.dry_mass == 1.75
-    assert engine.propellant_mass == 0.
-    assert engine.thrust == 236.
-    assert engine.isp == 255.
-
-
-def test_RS56_OBA():
-    engine = engines.RS56_OBA()
-    assert engine.dry_mass == 1.75
-    assert engine.propellant_mass == 0.
-    assert engine.thrust == 261.
-    assert engine.isp == 263.
