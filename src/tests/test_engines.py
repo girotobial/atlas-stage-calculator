@@ -5,9 +5,9 @@ from ..parts import engines
 @pytest.mark.parametrize(
     "engine_name, expected_vals",
     [
-        ('LR89-5', (205., 1.75, 256)),
-        ('LR89-7', (236., 1.75, 255)),
-        ('RS56', (261., 1.75, 263))
+        ('LR89-5', (205., 1.75, 290)),
+        ('LR89-7', (236., 1.75, 294)),
+        ('RS56', (261., 1.75, 299))
     ]
 )
 def test_engine(engine_name, expected_vals):
