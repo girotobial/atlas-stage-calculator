@@ -1,5 +1,6 @@
 astroid==2.4.2
 attrs==19.3.0
+coverage==5.2.1
 flake8==3.8.3
 isort==4.3.21
 lazy-object-proxy==1.4.3
@@ -14,6 +15,7 @@ pyflakes==2.2.0
 pylint==2.5.3
 pyparsing==2.4.7
 pytest==5.4.3
+pytest-cov==2.10.0
 six==1.15.0
 toml==0.10.1
 wcwidth==0.2.5
