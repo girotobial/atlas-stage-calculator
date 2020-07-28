@@ -23,14 +23,24 @@
         "Tanks":{
             "Atlas-Tapered":{
                 "mass": 0.175,
-                "max_liquid_fuel_volume": 315,
+                "max_fuel_volume": 315,
                 "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
             },
             "Atlas-Long":{
                 "mass": 0.55,
-                "max_liquid_fuel_volume": 990,
-                "max_oxidiser_volume":1210
+                "max_fuel_volume": 990,
+                "max_oxidiser_volume":1210,
+                "fuel_type": "LiquidFuel"
             }
         }
+    },
+    "Fuels":{
+        "Liquid Fuel":{
+            "density": 5
+        },
+        "Oxidiser":{
+            "density": 5
+        },
     }
 }
