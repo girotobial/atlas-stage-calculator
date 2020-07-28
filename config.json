@@ -1,0 +1,46 @@
+{
+    "Parts":{
+        "Engines":{
+            "LR89-5":{
+                "mass": 1.75,
+                "max_thrust": 205.0,
+                "surface_isp": 256.0,
+                "vacuum_isp": 290.0
+            },
+            "LR89-7":{
+                "mass": 1.75,
+                "max_thrust": 236.0,
+                "surface_isp": 255.0,
+                "vacuum_isp": 294.0
+            },
+            "RS56":{
+                "mass": 1.75,
+                "max_thrust": 261.0,
+                "surface_isp": 263.0,
+                "vacuum_isp": 299.0
+            }
+        },
+        "Tanks":{
+            "Atlas-Tapered":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Long":{
+                "mass": 0.55,
+                "max_fuel_volume": 990,
+                "max_oxidiser_volume":1210,
+                "fuel_type": "LiquidFuel"
+            }
+        }
+    },
+    "Fuels":{
+        "Liquid Fuel":{
+            "density": 5
+        },
+        "Oxidiser":{
+            "density": 5
+        }
+    }
+}
