@@ -17,7 +17,7 @@ class Tank(abc_parts.ABCPart):
             raise ValueError(f'{self._tank_name} is not a fuel tank')
         else:
             data = data[self._tank_name]
-        
+
         self._dry_mass = data['mass']
         self._oxidiser_volume = data['max_oxidiser_volume']
         self._fuel_volumne = data['max_fuel_volume']

@@ -16,7 +16,7 @@ def test_engine(engine_name, expected_vals):
     assert engine.thrust == expected_vals[0]
     assert engine.dry_mass == expected_vals[1]
     assert engine.isp == expected_vals[2]
-    assert engine.is_composite() == False
+    assert engine.is_composite() is False
 
 
 def test_engine_not_an_engine():
