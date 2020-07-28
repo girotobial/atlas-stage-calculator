@@ -4,12 +4,13 @@ import json
 
 
 class Engine(abc_parts.ABCPart):
-    def __init__(self, name: str):
+    def __init__(self, name: str = None):
         self._name = name
+        self._config_path = CONFIG_PATH
         self._read_config()
 
     def _read_config(self):
-        with open(CONFIG_PATH) as file:
+        with open(self._config_path) as file:
             data = json.load(file)["Parts"]["Engines"]
 
         if self._name not in data.keys():
