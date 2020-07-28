@@ -43,3 +43,7 @@ class ABCPart(abc.ABC):
     @abc.abstractproperty
     def isp(self) -> float:
         pass
+
+    @abc.abstractproperty
+    def exhaust_mass_flow_rate(self) -> float:
+        pass

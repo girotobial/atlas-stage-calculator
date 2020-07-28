@@ -1,5 +1,5 @@
 from src.parts import abc_parts
-from src.constants import CONFIG_PATH
+from src.constants import CONFIG_PATH, GRAVITATIONAL_ACCELERATION
 import json
 
 
@@ -37,3 +37,8 @@ class Engine(abc_parts.ABCPart):
     @property
     def propellant_mass(self):
         return 0.
+
+    @property
+    def exhaust_mass_flow_rate(self):
+        g = GRAVITATIONAL_ACCELERATION
+        return self.thrust / (g * self.isp)
