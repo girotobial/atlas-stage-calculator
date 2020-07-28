@@ -1,5 +1,5 @@
-from . import abc_parts
-from ..constants import CONFIG_PATH
+from src.parts import abc_parts
+from src.constants import CONFIG_PATH
 import json
 
 
@@ -32,7 +32,7 @@ class Engine(abc_parts.ABCPart):
 
     @property
     def isp(self):
-        return self._surface_isp
+        return self._vacuum_isp
 
     @property
     def propellant_mass(self):
