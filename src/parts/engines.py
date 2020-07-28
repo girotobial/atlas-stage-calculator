@@ -1,5 +1,6 @@
 from . import abc_parts
 
+
 class BaseEngine(abc_parts.ABCPart):
     @property
     def propellant_mass(self):
