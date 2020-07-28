@@ -39,3 +39,7 @@ class Tank(abc_parts.ABCPart):
         oxidiser_mass = self._oxidiser_volume * OXIDISER_DENSITY
         fuel_mass = self._fuel_volumne * LIQUID_FUEL_DENSITY
         return fuel_mass + oxidiser_mass
+
+    @property
+    def exhaust_mass_flow_rate(self) -> float:
+        return 0.
