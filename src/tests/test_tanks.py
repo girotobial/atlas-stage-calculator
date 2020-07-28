@@ -17,6 +17,7 @@ def test_tank(tank_name: str, expected_vals: tuple):
     # Check 
     assert tank.dry_mass == expected_vals[0]
     assert tank.propellant_mass == expected_vals[1]
+    assert tank.is_composite() == False
 
 
 def test_tank_error():
