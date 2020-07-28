@@ -1,12 +1,26 @@
+import json
 from . import abc_parts
-from ..constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY
+
+from ..constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY, CONFIG_PATH
 
 
-class BaseTank(abc_parts.ABCPart):
-    def __init__(self):
-        self._dry_mass = None
-        self._liquid_fuel_volume = None
-        self._oxidiser_volume = None
+class Tank(abc_parts.ABCPart):
+    def __init__(self, tank_name: str):
+        self._tank_name = tank_name
+        self._read_config()
+
+    def _read_config(self):
+        with open(CONFIG_PATH) as file:
+            data = json.load(file)['Parts']['Tanks']
+
+        if self._tank_name not in data.keys():
+            raise ValueError(f'{self._tank_name} is not a fuel tank')
+        else:
+            data = data[self._tank_name]
+        
+        self._dry_mass = data['mass']
+        self._oxidiser_volume = data['max_oxidiser_volume']
+        self._fuel_volumne = data['max_fuel_volume']
 
     @property
     def dry_mass(self):
@@ -14,30 +28,14 @@ class BaseTank(abc_parts.ABCPart):
 
     @property
     def thrust(self):
-        return 0.
+        return 0
 
     @property
     def isp(self):
-        return 0.
+        return 0
 
     @property
     def propellant_mass(self):
-        fuel_mass = self._liquid_fuel_volume * LIQUID_FUEL_DENSITY
-        oxidiser_mass =  self._oxidiser_volume * OXIDISER_DENSITY
+        oxidiser_mass = self._oxidiser_volume * OXIDISER_DENSITY
+        fuel_mass = self._fuel_volumne * LIQUID_FUEL_DENSITY
         return fuel_mass + oxidiser_mass
-
-
-class TaperedTank(BaseTank):
-    '''
-    Atlas-700 Balloon Fuel Tank
-
-    0.9375m / 1.25m adapter fuel tank for the Atlas 1.875m launcher
-    '''
-    def __init__(self):
-        super().__init__()
-        self._dry_mass = 0.175
-        self._liquid_fuel_volume = 315.
-        self._oxidiser_volume = 385.
-
-
-class 
