@@ -10,7 +10,13 @@ class Engine(abc_parts.ABCPart):
 
     def _read_config(self):
         with open(CONFIG_PATH) as file:
-            data = json.load(file)["Parts"]["Engines"][self._name]
+            data = json.load(file)["Parts"]["Engines"]
+
+        if self._name not in data.keys():
+            raise ValueError(f'{self._name} is not an engine')
+        else:
+            data = data[self._name]
+
         self._dry_mass = data['mass']
         self._thrust = data['max_thrust']
         self._surface_isp = data['surface_isp']

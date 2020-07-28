@@ -17,3 +17,7 @@ def test_engine(engine_name, expected_vals):
     assert engine.dry_mass == expected_vals[1]
     assert engine.isp == expected_vals[2]
 
+
+def test_engine_not_an_engine():
+    with pytest.raises(ValueError, match='not an engine'):
+        engines.Engine('Atlas-Long')
