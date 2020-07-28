@@ -24,7 +24,7 @@
             "Atlas-Tapered":{
                 "mass": 0.175,
                 "max_liquid_fuel_volume": 315,
-                "max_oxidiser_volume": 385,
+                "max_oxidiser_volume": 385
             },
             "Atlas-Long":{
                 "mass": 0.55,
