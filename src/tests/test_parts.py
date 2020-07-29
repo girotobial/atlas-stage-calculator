@@ -3,6 +3,30 @@ import src.parts as parts
 from src.constants import GRAVITATIONAL_ACCELERATION as g
 
 
+# Base Class Test
+@pytest.fixture
+def concrete_abc():
+    abc = parts.abc_parts.ABCPart
+    new_dict = abc.__dict__.copy()
+    for abstractmethod in abc.__abstractmethods__:
+        new_dict[abstractmethod] = lambda x, *args, **kw: (x, args, kw)
+    return type(f'{abc.__name__}', (abc,), new_dict)
+
+
+def test_abc_methods(concrete_abc):
+    c_abc = concrete_abc()
+    assert c_abc.add(concrete_abc) is None
+    assert c_abc.remove(concrete_abc) is None
+    assert c_abc.is_composite() is False
+
+
+def test_abc_parent(concrete_abc):
+    cabc = concrete_abc()
+    cabc_parent = concrete_abc()
+    cabc.parent = cabc_parent
+    assert cabc.parent is cabc_parent
+
+
 # Tank Tests
 @pytest.mark.parametrize(
     "tank_name, expected_vals",
