@@ -31,3 +31,15 @@ def test_tank_custom():
 def test_tank_error():
     with pytest.raises(ValueError, match='not a fuel tank'):
         tanks.Tank('LR89-5')
+
+
+def test_tank_setters():
+    tank = tanks.Tank()
+    
+    assert tank.dry_mass == 0
+    tank.dry_mass = 1
+    assert tank.dry_mass == 1
+
+    assert tank.propellant_mass == 0
+    tank.propellant_mass = 1
+    assert tank.propellant_mass == 1

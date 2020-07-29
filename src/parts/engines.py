@@ -33,13 +33,25 @@ class Engine(abc_parts.ABCPart):
     def dry_mass(self) -> float:
         return self._dry_mass
 
+    @dry_mass.setter
+    def dry_mass(self, dry_mass: float):
+        self._dry_mass = dry_mass
+
     @property
     def thrust(self) -> float:
         return self._thrust
 
+    @thrust.setter
+    def thrust(self, thrust: float):
+        self._thrust = thrust
+
     @property
     def isp(self) -> float:
         return self._vacuum_isp
+
+    @isp.setter
+    def isp(self, isp: float):
+        self._vacuum_isp = isp
 
     @property
     def propellant_mass(self) -> float:

@@ -7,6 +7,7 @@ from ..constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY, CONFIG_PATH
 class Tank(abc_parts.ABCPart):
     def __init__(self, tank_name: str = 'Custom'):
         self._tank_name = tank_name
+        self._propellant_mass = None
         if self._tank_name == 'Custom':
             self._dry_mass = 0.
             self._oxidiser_volume = 0.
@@ -31,6 +32,10 @@ class Tank(abc_parts.ABCPart):
     def dry_mass(self) -> float:
         return self._dry_mass
 
+    @dry_mass.setter
+    def dry_mass(self, dry_mass: float):
+        self._dry_mass = dry_mass
+
     @property
     def thrust(self) -> float:
         return 0
@@ -41,9 +46,17 @@ class Tank(abc_parts.ABCPart):
 
     @property
     def propellant_mass(self) -> float:
-        oxidiser_mass = self._oxidiser_volume * OXIDISER_DENSITY
-        fuel_mass = self._fuel_volumne * LIQUID_FUEL_DENSITY
-        return fuel_mass + oxidiser_mass
+        if self._propellant_mass:
+            return self._propellant_mass
+        else:
+            oxidiser_mass = self._oxidiser_volume * OXIDISER_DENSITY
+            fuel_mass = self._fuel_volumne * LIQUID_FUEL_DENSITY
+            self._propellant_mass = fuel_mass + oxidiser_mass
+        return self._propellant_mass
+
+    @propellant_mass.setter
+    def propellant_mass(self, propellant_mass: float):
+        self._propellant_mass = propellant_mass
 
     @property
     def exhaust_mass_flow_rate(self) -> float:
