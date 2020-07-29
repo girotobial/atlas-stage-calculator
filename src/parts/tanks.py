@@ -1,7 +1,6 @@
 import json
-from . import abc_parts
-
-from ..constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY, CONFIG_PATH
+from src.parts import abc_parts
+from src.constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY, CONFIG_PATH
 
 
 class Tank(abc_parts.ABCPart):
