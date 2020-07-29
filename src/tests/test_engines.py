@@ -1,5 +1,7 @@
 import pytest
-from ..parts import engines
+from src.parts import engines
+from src.constants import GRAVITATIONAL_ACCELERATION as g
+
 
 
 @pytest.mark.parametrize(
@@ -17,6 +19,16 @@ def test_engine(engine_name, expected_vals):
     assert engine.dry_mass == expected_vals[1]
     assert engine.isp == expected_vals[2]
     assert engine.is_composite() is False
+    assert engine.exhaust_mass_flow_rate == (
+        expected_vals[0] / (g * expected_vals[2])
+    )
+
+
+def test_engine_custom():
+    engine = engines.Engine()
+    assert engine.dry_mass == 0.
+    assert engine.thrust == 0.
+    assert engine.isp == 0
 
 
 def test_engine_not_an_engine():
