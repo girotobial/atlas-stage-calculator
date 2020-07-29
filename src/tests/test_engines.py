@@ -3,7 +3,6 @@ from src.parts import engines
 from src.constants import GRAVITATIONAL_ACCELERATION as g
 
 
-
 @pytest.mark.parametrize(
     "engine_name, expected_vals",
     [
@@ -34,3 +33,18 @@ def test_engine_custom():
 def test_engine_not_an_engine():
     with pytest.raises(ValueError, match='not an engine'):
         engines.Engine('Atlas-Long')
+
+
+def test_engine_setters():
+    engine = engines.Engine()
+    assert engine.dry_mass == 0.
+    engine.dry_mass = 1.
+    assert engine.dry_mass == 1.
+
+    assert engine.isp == 0.
+    engine.isp = 1.
+    assert engine.isp == 1.
+
+    assert engine.thrust == 0.
+    engine.thrust = 1.
+    assert engine.thrust == 1.
