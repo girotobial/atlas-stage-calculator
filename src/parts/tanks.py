@@ -5,9 +5,14 @@ from ..constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY, CONFIG_PATH
 
 
 class Tank(abc_parts.ABCPart):
-    def __init__(self, tank_name: str):
+    def __init__(self, tank_name: str = 'Custom'):
         self._tank_name = tank_name
-        self._read_config()
+        if self._tank_name == 'Custom':
+            self._dry_mass = 0.
+            self._oxidiser_volume = 0.
+            self._fuel_volumne = 0.
+        else:
+            self._read_config()
 
     def _read_config(self):
         with open(CONFIG_PATH) as file:
@@ -23,19 +28,19 @@ class Tank(abc_parts.ABCPart):
         self._fuel_volumne = data['max_fuel_volume']
 
     @property
-    def dry_mass(self):
+    def dry_mass(self) -> float:
         return self._dry_mass
 
     @property
-    def thrust(self):
+    def thrust(self) -> float:
         return 0
 
     @property
-    def isp(self):
+    def isp(self) -> float:
         return 0
 
     @property
-    def propellant_mass(self):
+    def propellant_mass(self) -> float:
         oxidiser_mass = self._oxidiser_volume * OXIDISER_DENSITY
         fuel_mass = self._fuel_volumne * LIQUID_FUEL_DENSITY
         return fuel_mass + oxidiser_mass
