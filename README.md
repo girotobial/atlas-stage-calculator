@@ -1,5 +1,5 @@
 <!-- PROJECT SHIELDS -->
-[![Build][build-shield]]
+![Build][build-shield]
 
 # Atlas Stage Calculator
 **Atlas Stage Calculator** Calculates delta v and optimal skirt seperation time for the [Blue-Dog-Design-Bureau](https://github.com/CobaltWolf/Bluedog-Design-Bureau) Atlas (Bossart) launch vehicle in Kerbal Space Program.
