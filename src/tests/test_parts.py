@@ -93,3 +93,87 @@ def test_engine_setters():
     assert engine.thrust == 0.
     engine.thrust = 1.
     assert engine.thrust == 1.
+
+
+# Assembly Tests
+@pytest.fixture
+def engine():
+    engine = parts.Engine()
+    engine.dry_mass = 1
+    engine.thrust = 2
+    engine.isp = 1
+    return engine
+
+
+@pytest.fixture
+def tank():
+    tank = parts.Tank()
+    tank.dry_mass = 1
+    tank.propellant_mass = 1
+    return tank
+
+
+def test_stage_construction(tank):
+    stage = parts.Stage()
+    stage.add(tank)
+    assert tank in stage._parts
+    assert tank.parent == stage
+
+    stage.remove(tank)
+    assert tank not in stage._parts
+    assert tank.parent is None
+
+
+@pytest.fixture
+def stage(engine, tank):
+    stage = parts.Stage()
+    stage.add(engine.copy())
+    stage.add(engine.copy())
+    stage.add(tank.copy())
+    return stage
+
+
+def test_stage_calculations(stage):
+    assert stage.dry_mass == 3.
+    assert stage.propellant_mass == 1.
+    assert stage.thrust == 4.
+    assert stage.isp == 1.
+    assert stage.exhaust_mass_flow_rate == stage.thrust / (g * stage.isp)
+
+
+def test_stage_composite(stage):
+    assert stage.is_composite() is True
+
+
+@pytest.mark.parametrize(
+    "fuel_remaining, expected_value",
+    [
+        (1, 4. / (4*g)),
+        (0.75, 4. / (3.75*g)),
+        (0, 4. / (3*g))
+    ]
+)
+def test_stage_twr(stage, fuel_remaining, expected_value):
+    assert stage.thrust_to_weight_ratio(fuel_remaining) == expected_value
+
+
+def test_vehicle_calculations(stage):
+    vehicle = parts.Vehicle()
+    stage1 = stage.copy()
+    stage1._parts[0].thrust = 3
+    stage2 = stage
+    vehicle.add(stage1)
+    vehicle.add(stage2)
+
+    assert vehicle.dry_mass == 6.
+    assert vehicle.propellant_mass == 2.
+    assert vehicle.thrust == 5.
+    assert vehicle.isp == 1.
+    assert vehicle.exhaust_mass_flow_rate == stage1.exhaust_mass_flow_rate
+
+
+def test_add_parent(stage):
+    vehicle = parts.Vehicle
+    stage.parent = vehicle
+
+    assert stage.parent == vehicle
