@@ -1,5 +1,5 @@
 import pytest
-from ..parts import tanks
+from src.parts import tanks
 
 
 @pytest.mark.parametrize(
@@ -14,10 +14,18 @@ def test_tank(tank_name: str, expected_vals: tuple):
     # Tanks by definition don't produce thrust
     assert tank.thrust == 0.
     assert tank.isp == 0.
+    assert tank.exhaust_mass_flow_rate == 0.
     # Check
     assert tank.dry_mass == expected_vals[0]
     assert tank.propellant_mass == expected_vals[1]
     assert tank.is_composite() is False
+
+
+def test_tank_custom():
+    tank = tanks.Tank()
+    assert tank._tank_name == 'Custom'
+    assert tank.thrust == 0.
+    assert tank.propellant_mass == 0.
 
 
 def test_tank_error():
