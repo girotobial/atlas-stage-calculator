@@ -32,6 +32,17 @@ TODO
 ### With Python venv
 Clone the repository, install requirements into a Python virtual environment and run the tests:
 
+#### On Windows
+```cmd
+git clone https://github.com/opensomersault/atlas-stage-calculator.git
+cd atlas-stage-calculator
+python -m venv env
+env\Scripts\activate.bat
+pip install -r requirements.txt
+pytest ./
+```
+
+#### On Linux
 ```sh
 git clone https://github.com/opensomersault/atlas-stage-calculator.git
 cd atlas-stage-calculator
