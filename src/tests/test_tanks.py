@@ -35,7 +35,7 @@ def test_tank_error():
 
 def test_tank_setters():
     tank = tanks.Tank()
-    
+
     assert tank.dry_mass == 0
     tank.dry_mass = 1
     assert tank.dry_mass == 1
