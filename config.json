@@ -92,7 +92,8 @@
                 "max_fuel_volume": 315,
                 "max_oxidiser_volume": 385,
                 "fuel_type": "LiquidFuel"
-            },
+            }
+        },
         "Couplers":{
             "Atlas-BoosterSkirt":{
                 "mass": 0.8
@@ -100,7 +101,6 @@
             "Vanguard-4688 Fairing":{
                 "mass": 0.05
             }
-        }
         }
     },
     "Fuels":{
