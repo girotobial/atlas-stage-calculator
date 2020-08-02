@@ -49,6 +49,7 @@ class Vehicle(Stage):
     def __init__(self, name: str = None, payload_mass: float = 0.):
         super().__init__(self)
         self.payload_mass = payload_mass
+        self._name = name
 
     @property
     def thrust(self):
@@ -65,3 +66,11 @@ class Vehicle(Stage):
     @property
     def exhaust_mass_flow_rate(self) -> float:
         return self._parts[0].exhaust_mass_flow_rate
+
+    @property
+    def name(self) -> str:
+        return self._name
+    
+    @name.setter
+    def name(self, name) -> None:
+        self._name = name
