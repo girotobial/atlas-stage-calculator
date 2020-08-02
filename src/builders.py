@@ -1,4 +1,6 @@
+from __future__ import annotations
 import abc
+from typing import List
 import src.parts
 
 
@@ -17,6 +19,36 @@ class ABCBuilder(abc.ABC):
 
 
 class StageBuilder(ABCBuilder):
+
+    _STAGE_DICT = {
+        'Able': {
+            "Engines": ["Vanguard-12 Able"],
+            "Tanks": ["Vanguard-100"],
+            "Couplers": ["Vanguard-4688 Fairing"]
+        },
+        'Atlas BT': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": ["Atlas-Base", "Atlas-Tapered"],
+            "Couplers": []
+        },
+        'Atlas BMT': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": ["Atlas-Base", "Atlas-Medium", "Atlas-Tapered"],
+            "Couplers": []
+        },
+        'Atlas ICBM Skirt': {
+            "Engines": [
+                "LR89-5 90%",
+                "LR89-5 90%",
+                "LR105-nm",
+                "LR101-nm",
+                "LR101-nm"
+            ],
+            "Tanks": [],
+            "Couplers": ["Atlas-BoosterSkirt"]
+        },
+    }
+
     def __init__(self) -> None:
         self.reset()
 
@@ -29,7 +61,23 @@ class StageBuilder(ABCBuilder):
         self.reset()
         return product
 
-    def build(self, product: str):
+    def _add_tanks(self, tank_list: List[str]) -> None:
+        for tank in tank_list:
+            if tank is not None:
+                self._stage.add(src.parts.Tank(tank))
+
+    def _add_engines(self, engine_list: List[str]) -> None:
+        for engine in engine_list:
+            if engine is not None:
+                self._stage.add(src.parts.Engine(engine))
+
+    def _add_couplers(self, coupler_list: List[str]) -> None:
+        # re-activate once written Coupler class in parts
+        # for coupler in coupler_list:
+        #    self._stage.add(src.parts.Coupler(coupler))
+        pass
+
+    def build_standard(self, stage_name: str) -> StageBuilder:
         '''
         Constructs stage from name of stage
 
@@ -38,22 +86,29 @@ class StageBuilder(ABCBuilder):
         product: str
             Name of the stage
         '''
-        # TODO
+        if stage_name not in self._STAGE_DICT.keys():
+            raise ValueError(f'{stage_name} is not a standard stage')
+
+        vehicle_details = self._STAGE_DICT.get(stage_name)
+        self._add_engines(vehicle_details['Engines'])
+        self._add_tanks(vehicle_details['Tanks'])
+        self._add_couplers(vehicle_details['Couplers'])
+        return self
 
 
 class VehicleBuilder(ABCBuilder):
 
-    VEHICLE_DICT = {
+    _VEHICLE_DICT = {
         "Atlas-B": [
-            "Atlas ICMB Skirt",
+            "Atlas ICBM Skirt",
             "Atlas BT"
         ],
         "Atlas-D": [
-            "Atlas ICMB Skirt",
+            "Atlas ICBM Skirt",
             "Atlas BMT"
         ],
         "Atlas-D Able": [
-            "Atlas ICMB Skirt",
+            "Atlas ICBM Skirt",
             "Atlas BMT",
             "Able"
         ],
@@ -153,7 +208,7 @@ class VehicleBuilder(ABCBuilder):
         self._stage_builder = StageBuilder()
         self.reset()
 
-    def reset(self):
+    def reset(self) -> None:
         self._vehicle = src.parts.Vehicle()
 
     @property
@@ -162,7 +217,7 @@ class VehicleBuilder(ABCBuilder):
         self.reset()
         return product
 
-    def build(self) -> None:
+    def build_standard(self, vehicle) -> VehicleBuilder:
         '''
         Constructs stage from name of stage
 
@@ -171,4 +226,7 @@ class VehicleBuilder(ABCBuilder):
         product: str
             Name of the stage
         '''
-        # TODO
+        for s in self._VEHICLE_DICT.get(vehicle):
+            self._stage_builder.build_standard(s)
+            self._vehicle.add(self._stage_builder.product)
+        return self
