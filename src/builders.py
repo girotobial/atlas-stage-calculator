@@ -226,6 +226,9 @@ class VehicleBuilder(ABCBuilder):
         product: str
             Name of the stage
         '''
+        if vehicle not in self._VEHICLE_DICT:
+            raise ValueError(f'{vehicle} is not a standard vehicle')
+
         for s in self._VEHICLE_DICT.get(vehicle):
             self._stage_builder.build_standard(s)
             self._vehicle.add(self._stage_builder.product)
