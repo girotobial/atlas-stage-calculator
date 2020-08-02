@@ -47,6 +47,17 @@ class StageBuilder(ABCBuilder):
             "Tanks": [],
             "Couplers": ["Atlas-BoosterSkirt"]
         },
+        "Atlas LR89-5 Skirt": {
+            "Engines": [
+                "LR89-5",
+                "LR89-5",
+                "LR105-nm",
+                "LR101-nm",
+                "LR101-nm"
+            ],
+            "Tanks": [],
+            "Couplers": ["Atlas-BoosterSkirt"]
+        }
     }
 
     def __init__(self) -> None:
@@ -232,4 +243,12 @@ class VehicleBuilder(ABCBuilder):
         for s in self._VEHICLE_DICT.get(vehicle):
             self._stage_builder.build_standard(s)
             self._vehicle.add(self._stage_builder.product)
+        return self
+
+    def name(self, name) -> VehicleBuilder:
+        self._vehicle.name = name
+        return self    
+
+    def add_payload(self, payload_mass) -> VehicleBuilder:
+        self._vehicle.payload_mass = payload_mass
         return self
