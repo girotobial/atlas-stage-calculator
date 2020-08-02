@@ -7,8 +7,6 @@ from src.constants import CONFIG_PATH
 config = json.load(open(CONFIG_PATH))
 
 # Stage Builder tests
-
-
 def test_stagebuilder_init():
     builder = src.builders.StageBuilder()
     assert type(builder._stage) is src.parts.Stage
@@ -100,3 +98,34 @@ def test_stagebuilder_add_couplers_success(coupler_str):
             correct_coupler.exhaust_mass_flow_rate)
     assert test_coupler.is_composite() == correct_coupler.is_composite()
 
+
+# Vehicle Builder Tests
+def test_vehicle_builder_init():
+    builder = src.builders.VehicleBuilder()
+    assert type(builder._stage_builder) is src.builders.StageBuilder
+    assert type(builder._vehicle) is src.parts.Vehicle
+
+
+def test_vehicle_builder_product():
+    builder = src.builders.VehicleBuilder()
+
+    # Check builder product is a Vehicle
+    assert type(builder.product) is src.parts.Vehicle
+
+    # Check builder product resets
+    test_vehicle = src.parts.Vehicle(name='test', payload_mass=1)
+    builder._vehicle = test_vehicle
+    # Should be the same on first call
+    assert builder.product == test_vehicle
+    # Should now be reset
+    assert builder.product != test_vehicle
+
+
+def test_vehicle_builder_reset():
+    builder = src.builders.VehicleBuilder()
+    test_vehicle = src.parts.Vehicle('test', 1)
+
+    builder._vehicle = test_vehicle
+    assert builder._vehicle == test_vehicle
+    builder.reset()
+    assert builder._vehicle != test_vehicle
