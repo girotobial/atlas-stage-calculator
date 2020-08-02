@@ -6,6 +6,7 @@ from src.constants import CONFIG_PATH
 
 config = json.load(open(CONFIG_PATH))
 
+
 # Stage Builder tests
 def test_stagebuilder_init():
     builder = src.builders.StageBuilder()
@@ -99,6 +100,12 @@ def test_stagebuilder_add_couplers_success(coupler_str):
     assert test_coupler.is_composite() == correct_coupler.is_composite()
 
 
+def test_stage_builder_build_standard_not_standard():
+    builder = src.builders.StageBuilder()
+    with pytest.raises(ValueError, match="is not a standard stage"):
+        builder.build_standard('lol not a rocket')
+
+
 # Vehicle Builder Tests
 def test_vehicle_builder_init():
     builder = src.builders.VehicleBuilder()
@@ -129,3 +136,9 @@ def test_vehicle_builder_reset():
     assert builder._vehicle == test_vehicle
     builder.reset()
     assert builder._vehicle != test_vehicle
+
+
+def test_vehicle_builder_build_standard_not_standard():
+    builder = src.builders.VehicleBuilder()
+    with pytest.raises(ValueError, match="is not a standard vehicle"):
+        builder.build_standard('lol not a rocket')
