@@ -194,6 +194,9 @@ def test_vehicle_calculations(stage):
     assert vehicle.thrust == 5.
     assert vehicle.isp == 1.
     assert vehicle.exhaust_mass_flow_rate == stage1.exhaust_mass_flow_rate
+    assert vehicle.thrust_to_weight_ratio(1) == vehicle.thrust / (g * (
+        vehicle.dry_mass + vehicle.propellant_mass
+    ))
 
 
 def test_add_parent(stage):
@@ -201,3 +204,12 @@ def test_add_parent(stage):
     stage.parent = vehicle
 
     assert stage.parent == vehicle
+
+
+def test_vehicle_name():
+    name = 'name'
+    vehicle = parts.Vehicle(name)
+    assert vehicle.name == name
+    new_name = 'new name'
+    vehicle.name = new_name
+    assert vehicle.name == new_name
