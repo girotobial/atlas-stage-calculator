@@ -100,10 +100,12 @@ class StageBuilder(ABCBuilder):
         if stage_name not in self._STAGE_DICT.keys():
             raise ValueError(f'{stage_name} is not a standard stage')
 
-        vehicle_details = self._STAGE_DICT.get(stage_name)
-        self._add_engines(vehicle_details['Engines'])
-        self._add_tanks(vehicle_details['Tanks'])
-        self._add_couplers(vehicle_details['Couplers'])
+        self._stage.name = stage_name
+
+        stage_details = self._STAGE_DICT.get(stage_name)
+        self._add_engines(stage_details['Engines'])
+        self._add_tanks(stage_details['Tanks'])
+        self._add_couplers(stage_details['Couplers'])
         return self
 
 
@@ -240,6 +242,8 @@ class VehicleBuilder(ABCBuilder):
         if vehicle not in self._VEHICLE_DICT:
             raise ValueError(f'{vehicle} is not a standard vehicle')
 
+        self._vehicle.name = vehicle
+
         for s in self._VEHICLE_DICT.get(vehicle):
             self._stage_builder.build_standard(s)
             self._vehicle.add(self._stage_builder.product)
@@ -247,7 +251,7 @@ class VehicleBuilder(ABCBuilder):
 
     def name(self, name) -> VehicleBuilder:
         self._vehicle.name = name
-        return self    
+        return self
 
     def add_payload(self, payload_mass) -> VehicleBuilder:
         self._vehicle.payload_mass = payload_mass
