@@ -40,7 +40,7 @@ class Stage(ABCPart):
     def isp(self) -> float:
         return self.thrust / (g * self.exhaust_mass_flow_rate)
 
-    def thrust_to_weight_ratio(self, fuel_remaining: float) -> float:
+    def thrust_to_weight_ratio(self, fuel_remaining: float = 1) -> float:
         weight = g * (self.dry_mass + fuel_remaining * self.propellant_mass)
         return self.thrust / weight
 
@@ -70,7 +70,7 @@ class Vehicle(Stage):
     @property
     def name(self) -> str:
         return self._name
-    
+
     @name.setter
     def name(self, name) -> None:
         self._name = name
