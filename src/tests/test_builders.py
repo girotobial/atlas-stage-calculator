@@ -7,6 +7,19 @@ from src.constants import CONFIG_PATH
 config = json.load(open(CONFIG_PATH))
 
 
+# ABC tests
+@pytest.fixture
+def concrete_abc():
+    abc = src.builders.ABCBuilder
+    abc.__abstractmethods__ = set()
+    return abc()
+
+
+def test_abcbuilder_methods(concrete_abc):
+    concrete_abc.reset()
+    assert concrete_abc.product is None
+
+
 # Stage Builder tests
 def test_stagebuilder_init():
     builder = src.builders.StageBuilder()
