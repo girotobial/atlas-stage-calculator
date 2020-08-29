@@ -159,3 +159,13 @@ def test_vehicle_payload(vehicle_builder):
     builder = vehicle_builder
     vehicle = builder.add_payload(25).product
     assert vehicle.payload_mass == 25
+
+
+@pytest.mark.parametrize(
+    "vehicle",
+    [
+        *src.builders.VehicleBuilder._VEHICLE_DICT.keys()
+    ]
+)
+def test_all_standard_vehicles_built(vehicle_builder, vehicle):
+    vehicle_builder.build_standard(vehicle)
