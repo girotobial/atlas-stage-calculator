@@ -119,6 +119,44 @@ def test_engine_setters():
     assert engine.thrust == 1.
 
 
+# Coupler tests
+@pytest.fixture
+def coupler():
+    return parts.Coupler()
+
+
+def test_coupler_properties(coupler):
+    assert coupler.dry_mass == 0
+    assert coupler.exhaust_mass_flow_rate == 0
+    assert coupler.isp == 0
+    assert coupler.propellant_mass == 0
+    assert coupler.thrust == 0
+    assert coupler.is_composite() is False
+
+
+def test_coupler_setters(coupler):
+    assert coupler.dry_mass == 0
+    coupler.dry_mass = 1
+    assert coupler.dry_mass == 1
+
+
+@pytest.mark.parametrize(
+    "coupler_name, expected_vals",
+    [
+        ('Atlas-BoosterSkirt', .8),
+        ('Vanguard-4688 Fairing', .05),
+    ]
+)
+def test_coupler_config_read_config(coupler_name, expected_vals):
+    coupler = parts.Coupler(coupler_name)
+    assert coupler.dry_mass == expected_vals
+
+
+def test_coupler_not_a_coupler():
+    with pytest.raises(ValueError, match='not a coupler'):
+        parts.Coupler('FooBar')
+
+
 # Assembly Tests
 @pytest.fixture
 def engine():
