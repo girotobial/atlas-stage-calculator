@@ -32,14 +32,14 @@ def test_abc_parent(concrete_abc):
 
 # Tank Tests
 @pytest.mark.parametrize(
-    "tank_name, expected_vals",
+    "name, expected_vals",
     [
         ('Atlas-Tapered', (0.175, 3.5)),
         ('Atlas-Long', (0.55, 11))
     ]
 )
-def test_tank(tank_name: str, expected_vals: tuple):
-    tank = parts.Tank(tank_name)
+def test_tank(name: str, expected_vals: tuple):
+    tank = parts.Tank(name)
     # Tanks by definition don't produce thrust
     assert tank.thrust == 0.
     assert tank.isp == 0.
@@ -52,7 +52,7 @@ def test_tank(tank_name: str, expected_vals: tuple):
 
 def test_tank_custom():
     tank = parts.Tank()
-    assert tank._tank_name == 'Custom'
+    assert tank._name == 'Custom'
     assert tank.thrust == 0.
     assert tank.propellant_mass == 0.
 
