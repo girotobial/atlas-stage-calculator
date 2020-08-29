@@ -4,6 +4,7 @@ Base classes for parts
 '''
 from __future__ import annotations
 import abc
+import copy
 
 
 class ABCPart(abc.ABC):
@@ -28,6 +29,9 @@ class ABCPart(abc.ABC):
     def is_composite(self) -> bool:
         return False
 
+    def copy(self) -> ABCPart:
+        return copy.deepcopy(self)
+
     @abc.abstractproperty
     def dry_mass(self) -> float:
         pass
@@ -42,4 +46,8 @@ class ABCPart(abc.ABC):
 
     @abc.abstractproperty
     def isp(self) -> float:
+        pass
+
+    @abc.abstractproperty
+    def exhaust_mass_flow_rate(self) -> float:
         pass

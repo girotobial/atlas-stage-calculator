@@ -18,10 +18,64 @@
                 "max_thrust": 261.0,
                 "surface_isp": 263.0,
                 "vacuum_isp": 299.0
+            },
+            "LR89-5 90%": {
+                "mass": 1.75,
+                "max_thrust": 184.5,
+                "surface_isp": 256.0,
+                "vacuum_isp": 290.0
+            },
+            "Vanguard-12 Able": {
+                "mass": 0.15,
+                "max_thrust": 6,
+                "surface_isp": 85,
+                "vacuum_isp": 270
+            },
+            "LR105": {
+                "mass": 0.95,
+                "max_thrust": 140,
+                "surface_isp": 220,
+                "vacuum_isp": 316
+            },
+            "LR105-nm": {
+                "mass": 0,
+                "max_thrust": 140,
+                "surface_isp": 220,
+                "vacuum_isp": 316
+            },
+            "LR101": {
+                "mass": 0.068,
+                "max_thrust": 10,
+                "surface_isp": 250,
+                "vacuum_isp": 290
+            },
+            "LR101-nm": {
+                "mass": 0,
+                "max_thrust": 10,
+                "surface_isp": 250,
+                "vacuum_isp": 290
             }
         },
         "Tanks":{
+            "Vanguard-100":{
+                "mass": 0.0625,
+                "max_fuel_volume": 45,
+                "max_oxidiser_volume": 55,
+                "fuel_type": "LiquidFuel"
+            },
             "Atlas-Tapered":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Base":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Small":{
                 "mass": 0.175,
                 "max_fuel_volume": 315,
                 "max_oxidiser_volume": 385,
@@ -32,6 +86,20 @@
                 "max_fuel_volume": 990,
                 "max_oxidiser_volume":1210,
                 "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Medium":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            }
+        },
+        "Couplers":{
+            "Atlas-BoosterSkirt":{
+                "mass": 0.8
+            },
+            "Vanguard-4688 Fairing":{
+                "mass": 0.05
             }
         }
     },
