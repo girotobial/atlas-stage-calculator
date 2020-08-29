@@ -16,11 +16,11 @@ def test_abc_methods(concrete_abc):
     assert c_abc.add(concrete_abc) is None
     assert c_abc.remove(concrete_abc) is None
     assert c_abc.is_composite() is False
-    assert c_abc.dry_mass == None
-    assert c_abc.propellant_mass == None
-    assert c_abc.thrust == None
-    assert c_abc.isp == None
-    assert c_abc.exhaust_mass_flow_rate == None
+    assert c_abc.dry_mass is None
+    assert c_abc.propellant_mass is None
+    assert c_abc.thrust is None
+    assert c_abc.isp is None
+    assert c_abc.exhaust_mass_flow_rate is None
 
 
 def test_abc_parent(concrete_abc):
