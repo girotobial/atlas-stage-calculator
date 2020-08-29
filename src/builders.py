@@ -83,10 +83,10 @@ class StageBuilder(ABCBuilder):
                 self._stage.add(src.parts.Engine(engine))
 
     def _add_couplers(self, coupler_list: List[str]) -> None:
-        # re-activate once written Coupler class in parts
-        # for coupler in coupler_list:
-        #    self._stage.add(src.parts.Coupler(coupler))
-        pass
+        #re-activate once written Coupler class in parts
+        for coupler in coupler_list:
+            self._stage.add(src.parts.Coupler(coupler))
+        #pass
 
     def build_standard(self, stage_name: str) -> StageBuilder:
         '''
