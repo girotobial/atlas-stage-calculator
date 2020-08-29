@@ -8,7 +8,7 @@ from src.parts.abc_parts import ABCPart
 from src.constants import CONFIG_PATH
 
 
-class Coupler(ABCPart):
+class Accessory(ABCPart):
     def __init__(self, name: str = 'Custom') -> None:
         self._name = name
         if name == 'Custom':
@@ -19,10 +19,10 @@ class Coupler(ABCPart):
 
     def _read_config(self):
         with open(self._config_path) as file:
-            data = json.load(file)['Parts']['Couplers']
+            data = json.load(file)['Parts']['Accessories']
 
         if self._name not in data.keys():
-            raise ValueError(f'{self._name} is not a coupler')
+            raise ValueError(f'{self._name} is not an accessory')
         else:
             data = data[self._name]
 

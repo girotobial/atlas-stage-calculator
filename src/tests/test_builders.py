@@ -85,32 +85,32 @@ def test_stagebuilder_add_engines_success(engine_str):
 
 
 @pytest.mark.parametrize(
-    "coupler_str",
+    "accessory_str",
     [
-        coupler
-        for coupler
-        in config['Parts']['Couplers'].keys()
+        accessory
+        for accessory
+        in config['Parts']['Accessories'].keys()
     ]
 )
-def test_stagebuilder_add_couplers_success(coupler_str):
+def test_stagebuilder_add_accessory_success(accessory_str):
     # Setup
     builder = src.builders.StageBuilder()
 
     # Test method returns correct type
-    builder._add_couplers([coupler_str])
-    assert type(builder._stage._parts[0]) is src.parts.Coupler
+    builder._add_accessories([accessory_str])
+    assert type(builder._stage._parts[0]) is src.parts.Accessory
 
-    # Test attributes of returned engine match calling Coupler class directly
-    correct_coupler = src.parts.Coupler(coupler_str)
-    test_coupler = builder._stage._parts[0]
+    # Test attributes of returned engine match calling accessory class directly
+    correct_accessory = src.parts.Accessory(accessory_str)
+    test_accessory = builder._stage._parts[0]
 
-    assert test_coupler.dry_mass == correct_coupler.dry_mass
-    assert test_coupler.propellant_mass == correct_coupler.propellant_mass
-    assert test_coupler.thrust == correct_coupler.thrust
-    assert test_coupler.isp == correct_coupler.isp
-    assert (test_coupler.exhaust_mass_flow_rate ==
-            correct_coupler.exhaust_mass_flow_rate)
-    assert test_coupler.is_composite() == correct_coupler.is_composite()
+    assert test_accessory.dry_mass == correct_accessory.dry_mass
+    assert test_accessory.propellant_mass == correct_accessory.propellant_mass
+    assert test_accessory.thrust == correct_accessory.thrust
+    assert test_accessory.isp == correct_accessory.isp
+    assert (test_accessory.exhaust_mass_flow_rate ==
+            correct_accessory.exhaust_mass_flow_rate)
+    assert test_accessory.is_composite() == correct_accessory.is_composite()
 
 
 def test_stage_builder_build_standard_not_standard():

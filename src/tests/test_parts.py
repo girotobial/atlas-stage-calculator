@@ -122,42 +122,42 @@ def test_engine_setters():
     assert engine.thrust == 1.
 
 
-# Coupler tests
+# accessory tests
 @pytest.fixture
-def coupler():
-    return parts.Coupler()
+def accessory():
+    return parts.Accessory()
 
 
-def test_coupler_properties(coupler):
-    assert coupler.dry_mass == 0
-    assert coupler.exhaust_mass_flow_rate == 0
-    assert coupler.isp == 0
-    assert coupler.propellant_mass == 0
-    assert coupler.thrust == 0
-    assert coupler.is_composite() is False
+def test_accessory_properties(accessory):
+    assert accessory.dry_mass == 0
+    assert accessory.exhaust_mass_flow_rate == 0
+    assert accessory.isp == 0
+    assert accessory.propellant_mass == 0
+    assert accessory.thrust == 0
+    assert accessory.is_composite() is False
 
 
-def test_coupler_setters(coupler):
-    assert coupler.dry_mass == 0
-    coupler.dry_mass = 1
-    assert coupler.dry_mass == 1
+def test_accessory_setters(accessory):
+    assert accessory.dry_mass == 0
+    accessory.dry_mass = 1
+    assert accessory.dry_mass == 1
 
 
 @pytest.mark.parametrize(
-    "coupler_name, expected_vals",
+    "accessory_name, expected_vals",
     [
         ('Atlas-BoosterSkirt', .8),
         ('Vanguard-4688 Fairing', .05),
     ]
 )
-def test_coupler_config_read_config(coupler_name, expected_vals):
-    coupler = parts.Coupler(coupler_name)
-    assert coupler.dry_mass == expected_vals
+def test_accessory_config_read_config(accessory_name, expected_vals):
+    accessory = parts.Accessory(accessory_name)
+    assert accessory.dry_mass == expected_vals
 
 
-def test_coupler_not_a_coupler():
-    with pytest.raises(ValueError, match='not a coupler'):
-        parts.Coupler('FooBar')
+def test_accessory_not_a_accessory():
+    with pytest.raises(ValueError, match='not an accessory'):
+        parts.Accessory('FooBar')
 
 
 # Assembly Tests
