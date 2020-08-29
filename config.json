@@ -166,7 +166,7 @@
                 "fuel_type": "LqdHydrogen"
             }
         },
-        "Couplers":{
+        "Accessories":{
             "Atlas-BoosterSkirt":{
                 "mass": 0.8
             },
