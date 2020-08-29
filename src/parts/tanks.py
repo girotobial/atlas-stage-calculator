@@ -4,10 +4,10 @@ from src.constants import LIQUID_FUEL_DENSITY, OXIDISER_DENSITY, CONFIG_PATH
 
 
 class Tank(abc_parts.ABCPart):
-    def __init__(self, tank_name: str = 'Custom'):
-        self._tank_name = tank_name
+    def __init__(self, name: str = 'Custom'):
+        self._name = name
         self._propellant_mass = None
-        if self._tank_name == 'Custom':
+        if self._name == 'Custom':
             self._dry_mass = 0.
             self._oxidiser_volume = 0.
             self._fuel_volumne = 0.
@@ -18,10 +18,10 @@ class Tank(abc_parts.ABCPart):
         with open(CONFIG_PATH) as file:
             data = json.load(file)['Parts']['Tanks']
 
-        if self._tank_name not in data.keys():
-            raise ValueError(f'{self._tank_name} is not a fuel tank')
+        if self._name not in data.keys():
+            raise ValueError(f'{self._name} is not a fuel tank')
         else:
-            data = data[self._tank_name]
+            data = data[self._name]
 
         self._dry_mass = data['mass']
         self._oxidiser_volume = data['max_oxidiser_volume']
