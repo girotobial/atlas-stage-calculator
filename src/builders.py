@@ -31,9 +31,49 @@ class StageBuilder(ABCBuilder):
             "Tanks": ["Atlas-Base", "Atlas-Tapered"],
             "Couplers": []
         },
+        'Atlas BM': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": ["Atlas-Base", "Atlas-Medium"],
+            "Couplers": []
+        },
         'Atlas BMT': {
             "Engines": ["LR105", "LR101", "LR101"],
             "Tanks": ["Atlas-Base", "Atlas-Medium", "Atlas-Tapered"],
+            "Couplers": []
+        },
+        'Atlas BMST': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": [
+                "Atlas-Base",
+                "Atlas-Medium",
+                "Atlas-Small",
+                "Atlas-Tapered"
+            ],
+            "Couplers": []
+        },
+        'Atlas BMM': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": ["Atlas-Base", "Atlas-Medium", "Atlas-Medium"],
+            "Couplers": []
+        },
+        'Atlas BMMS': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": [
+                "Atlas-Base",
+                "Atlas-Medium",
+                "Atlas-Medium",
+                "Atlas-Small"
+            ],
+            "Couplers": []
+        },
+        'Atlas BMMM': {
+            "Engines": ["LR105", "LR101", "LR101"],
+            "Tanks": [
+                "Atlas-Base",
+                "Atlas-Medium",
+                "Atlas-Medium",
+                "Atlas-Medium"
+            ],
             "Couplers": []
         },
         'Atlas ICBM Skirt': {
@@ -57,7 +97,87 @@ class StageBuilder(ABCBuilder):
             ],
             "Tanks": [],
             "Couplers": ["Atlas-BoosterSkirt"]
-        }
+        },
+        "Atlas LR89-7 Skirt": {
+            "Engines": [
+                "LR89-7",
+                "LR89-7",
+                "LR105-nm",
+                "LR101-nm",
+                "LR101-nm"
+            ],
+            "Tanks": [],
+            "Couplers": ["Atlas-BoosterSkirt"]
+        },
+        "Atlas RS56 Skirt": {
+            "Engines": [
+                "RS56",
+                "RS56",
+                "LR105-nm",
+                "LR101-nm",
+                "LR101-nm"
+            ],
+            "Tanks": [],
+            "Couplers": ["Atlas-BoosterSkirt"]
+        },
+        "Agena-A": {
+            "Engines": [
+                "Agena-A-25"
+            ],
+            "Tanks": ["Agena-70W"],
+            "Couplers": []
+        },
+        "Agena-B": {
+            "Engines": [
+                "Agena-A-25"
+            ],
+            "Tanks": ["Agena-200B"],
+            "Couplers": []
+        },
+        "Agena-D": {
+            "Engines": [
+                "Agena-D-35",
+                "Agena-D-4",
+                "Agena-D-4",
+            ],
+            "Tanks": ["Agena-200D"],
+            "Couplers": []
+        },
+        "Centaur-D": {
+            "Engines": [
+                "Centaur-R-10A",
+                "Centaur-R-10A",
+            ],
+            "Tanks": ["Centaur-D-1440"],
+            "Couplers": [
+                "Centaur ACS",
+                "Centaur 1.875m Fairing Base",
+                "Centaur Engine Mounting Plate",
+            ]
+        },
+        "Centaur-D1A": {
+            "Engines": [
+                "Centaur-R-10A-3",
+                "Centaur-R-10A-3",
+            ],
+            "Tanks": ["Centaur-D-1800"],
+            "Couplers": [
+                "Centaur ACS",
+                "Centaur 1.875m Fairing Base",
+                "Centaur Engine Mounting Plate",
+            ]
+        },
+        "Centaur-II": {
+            "Engines": [
+                "Centaur-R-10A-4",
+            ],
+            "Tanks": ["Centaur-D-2160"],
+            "Couplers": [
+                "Centaur ACS",
+                "Centaur 1.875m Fairing Base",
+                "Centaur Engine Mounting Plate",
+            ]
+        },
     }
 
     def __init__(self) -> None:
