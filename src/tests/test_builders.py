@@ -107,14 +107,19 @@ def test_stage_builder_build_standard_not_standard():
 
 
 # Vehicle Builder Tests
-def test_vehicle_builder_init():
-    builder = src.builders.VehicleBuilder()
+@pytest.fixture
+def vehicle_builder():
+    return src.builders.VehicleBuilder()
+
+
+def test_vehicle_builder_init(vehicle_builder):
+    builder = vehicle_builder
     assert type(builder._stage_builder) is src.builders.StageBuilder
     assert type(builder._vehicle) is src.parts.Vehicle
 
 
-def test_vehicle_builder_product():
-    builder = src.builders.VehicleBuilder()
+def test_vehicle_builder_product(vehicle_builder):
+    builder = vehicle_builder
 
     # Check builder product is a Vehicle
     assert type(builder.product) is src.parts.Vehicle
@@ -128,8 +133,8 @@ def test_vehicle_builder_product():
     assert builder.product != test_vehicle
 
 
-def test_vehicle_builder_reset():
-    builder = src.builders.VehicleBuilder()
+def test_vehicle_builder_reset(vehicle_builder):
+    builder = vehicle_builder
     test_vehicle = src.parts.Vehicle('test', 1)
 
     builder._vehicle = test_vehicle
@@ -138,7 +143,19 @@ def test_vehicle_builder_reset():
     assert builder._vehicle != test_vehicle
 
 
-def test_vehicle_builder_build_standard_not_standard():
-    builder = src.builders.VehicleBuilder()
+def test_vehicle_builder_build_standard_not_standard(vehicle_builder):
+    builder = vehicle_builder
     with pytest.raises(ValueError, match="is not a standard vehicle"):
         builder.build_standard('lol not a rocket')
+
+
+def test_vehicle_builder_naming(vehicle_builder):
+    builder = vehicle_builder
+    vehicle = builder.name('my_vehicle').product
+    assert vehicle.name == 'my_vehicle'
+
+
+def test_vehicle_payload(vehicle_builder):
+    builder = vehicle_builder
+    vehicle = builder.add_payload(25).product
+    assert vehicle.payload_mass == 25
