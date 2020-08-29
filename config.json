@@ -54,6 +54,42 @@
                 "max_thrust": 10,
                 "surface_isp": 250,
                 "vacuum_isp": 290
+            },
+            "Agena-A-25": {
+                "mass": 0.1688,
+                "max_thrust": 16.5,
+                "surface_isp": 100,
+                "vacuum_isp": 240
+            },
+            "Agena-D-35": {
+                "mass": 0.175,
+                "max_thrust": 17.5,
+                "surface_isp": 85,
+                "vacuum_isp": 293
+            },
+            "Agena-D-4": {
+                "mass": 0.0345,
+                "max_thrust": 4,
+                "surface_isp": 85,
+                "vacuum_isp": 285
+            },
+            "Centaur-R-10A": {
+                "mass": 0.08,
+                "max_thrust": 17,
+                "surface_isp": 20,
+                "vacuum_isp": 425
+            },
+            "Centaur-R-10A-3": {
+                "mass": 0.08,
+                "max_thrust": 16.5,
+                "surface_isp": 20,
+                "vacuum_isp": 444
+            },
+            "Centaur-R-10A-4": {
+                "mass": 0.12,
+                "max_thrust": 23,
+                "surface_isp": 20,
+                "vacuum_isp": 449
             }
         },
         "Tanks":{
@@ -92,6 +128,42 @@
                 "max_fuel_volume": 315,
                 "max_oxidiser_volume": 385,
                 "fuel_type": "LiquidFuel"
+            },
+            "Agena-70W":{
+                "mass": 0.04375,
+                "max_fuel_volume": 31.5,
+                "max_oxidiser_volume": 38.5,
+                "fuel_type": "LiquidFuel"
+            },
+            "Agena-200B":{
+                "mass": 0.0875,
+                "max_fuel_volume": 63,
+                "max_oxidiser_volume": 77,
+                "fuel_type": "LiquidFuel"
+            },
+            "Agena-200D":{
+                "mass": 0.05,
+                "max_fuel_volume": 90,
+                "max_oxidiser_volume": 110,
+                "fuel_type": "LiquidFuel"
+            },
+            "Centaur-D-1440":{
+                "mass": 0.36,
+                "max_fuel_volume": 5400,
+                "max_oxidiser_volume": 360,
+                "fuel_type": "LqdHydrogen"
+            },
+            "Centaur-D-1800":{
+                "mass": 0.45,
+                "max_fuel_volume": 6750,
+                "max_oxidiser_volume": 450,
+                "fuel_type": "LqdHydrogen"
+            },
+            "Centaur-D-2160":{
+                "mass": 0.54,
+                "max_fuel_volume": 8100,
+                "max_oxidiser_volume": 540,
+                "fuel_type": "LqdHydrogen"
             }
         },
         "Couplers":{
