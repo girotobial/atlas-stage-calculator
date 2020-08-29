@@ -4,7 +4,6 @@ Class for decouplers
 '''
 from __future__ import annotations
 import json
-from typing import List
 from src.parts.abc_parts import ABCPart
 from src.constants import CONFIG_PATH
 
