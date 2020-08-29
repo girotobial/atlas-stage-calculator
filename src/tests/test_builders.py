@@ -85,7 +85,7 @@ def test_stagebuilder_add_couplers_success(coupler_str):
 
     # Test method returns correct type
     builder._add_couplers([coupler_str])
-    assert type(builder._stage._parts) is src.parts.Coupler
+    assert type(builder._stage._parts[0]) is src.parts.Coupler
 
     # Test attributes of returned engine match calling Coupler class directly
     correct_coupler = src.parts.Coupler(coupler_str)
