@@ -7,10 +7,8 @@ from src.constants import GRAVITATIONAL_ACCELERATION as g
 @pytest.fixture
 def concrete_abc():
     abc = parts.abc_parts.ABCPart
-    new_dict = abc.__dict__.copy()
-    for abstractmethod in abc.__abstractmethods__:
-        new_dict[abstractmethod] = lambda x, *args, **kw: (x, args, kw)
-    return type(f'{abc.__name__}', (abc,), new_dict)
+    abc.__abstractmethods__ = set()
+    return abc
 
 
 def test_abc_methods(concrete_abc):
@@ -18,6 +16,11 @@ def test_abc_methods(concrete_abc):
     assert c_abc.add(concrete_abc) is None
     assert c_abc.remove(concrete_abc) is None
     assert c_abc.is_composite() is False
+    assert c_abc.dry_mass == None
+    assert c_abc.propellant_mass == None
+    assert c_abc.thrust == None
+    assert c_abc.isp == None
+    assert c_abc.exhaust_mass_flow_rate == None
 
 
 def test_abc_parent(concrete_abc):
