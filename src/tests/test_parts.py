@@ -238,6 +238,7 @@ def test_vehicle_calculations(stage):
     assert vehicle.thrust_to_weight_ratio(1) == vehicle.thrust / (g * (
         vehicle.dry_mass + vehicle.propellant_mass
     ))
+    assert vehicle.mass == 8
 
 
 def test_add_parent(stage):
