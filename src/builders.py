@@ -178,6 +178,16 @@ class StageBuilder(ABCBuilder):
                 "Centaur Engine Mounting Plate",
             ]
         },
+        "4x Castor-4A": {
+            "Engines": [
+                "Castor-4A",
+                "Castor-4A",
+                "Castor-4A",
+                "Castor-4A",
+            ],
+            "Tanks": [],
+            "Accessories": []
+        },
     }
 
     def __init__(self) -> None:
@@ -328,7 +338,7 @@ class VehicleBuilder(ABCBuilder):
             "Centaur-II"
         ],
         "Atlas IIAS": [
-            "4x Dioscuri-4A",
+            "4x Castor-4A",
             "Atlas RS56 Skirt",
             "Atlas BMMM",
             "Centaur-II"
