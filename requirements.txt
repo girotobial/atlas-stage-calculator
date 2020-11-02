@@ -16,6 +16,6 @@ pyparsing==2.4.7
 pytest==6.1.2
 pytest-cov==2.10.1
 six==1.15.0
-toml==0.10.1
+toml==0.10.2
 wcwidth==0.2.5
 wrapt==1.12.1
