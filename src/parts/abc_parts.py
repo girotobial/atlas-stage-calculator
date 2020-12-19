@@ -1,23 +1,25 @@
-'''
+"""
 Base classes for parts
 
-'''
+"""
 from __future__ import annotations
+
 import abc
 import copy
+from typing import Optional
 
 
 class ABCPart(abc.ABC):
-    '''
+    """
     The base Part class
-    '''
+    """
 
     @property
-    def parent(self) -> ABCPart:
+    def parent(self) -> Optional[ABCPart]:
         return self._parent
 
     @parent.setter
-    def parent(self, parent: ABCPart):
+    def parent(self, parent: Optional[ABCPart]) -> None:
         self._parent = parent
 
     def add(self, part: ABCPart) -> None:

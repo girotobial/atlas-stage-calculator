@@ -1,12 +1,14 @@
 from __future__ import annotations
-from typing import List
-from src.parts.abc_parts import ABCPart
+
+from typing import List, Optional
+
 from src.constants import GRAVITATIONAL_ACCELERATION as g
+from src.parts.abc_parts import ABCPart
 
 
 class Stage(ABCPart):
-    def __init__(self, name: str = None) -> None:
-        self.name = name
+    def __init__(self, name: Optional[str] = None) -> None:
+        self._name = name
         self._parts: List[ABCPart] = []
 
     def add(self, part: ABCPart) -> None:
@@ -44,12 +46,19 @@ class Stage(ABCPart):
         weight = g * (self.dry_mass + fuel_remaining * self.propellant_mass)
         return self.thrust / weight
 
+    @property
+    def name(self) -> Optional[str]:
+        return self._name
+
+    @name.setter
+    def name(self, name: Optional[str]) -> None:
+        self._name = name
+
 
 class Vehicle(Stage):
-    def __init__(self, name: str = None, payload_mass: float = 0.):
-        super().__init__(self)
+    def __init__(self, name: Optional[str] = None, payload_mass: float = 0.0):
+        super().__init__(name)
         self.payload_mass = payload_mass
-        self._name = name
 
     @property
     def thrust(self):
@@ -66,11 +75,3 @@ class Vehicle(Stage):
     @property
     def exhaust_mass_flow_rate(self) -> float:
         return self._parts[0].exhaust_mass_flow_rate
-
-    @property
-    def name(self) -> str:
-        return self._name
-
-    @name.setter
-    def name(self, name) -> None:
-        self._name = name
