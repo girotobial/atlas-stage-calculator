@@ -16,19 +16,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with: |
-        command: install --dev
-    - name: Lint with flake8
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with: |
-        command: run flake8
-    - name: Check with mypy
-      uses: VaultVulp/action-pipenv@v2.0.1
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
       with:
-        command: run mypy --ignore-missing-imports
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with: |
-        command: run pytest
+      run: |
+        pytest
