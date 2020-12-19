@@ -28,7 +28,7 @@ jobs:
     - name: Lint with flake8
       run: |
         pipenv run flake8
-    - names: Check with mypy
+    - name: Check with typing mypy
       run: |
         pipenv run mypy --ignore-missing-imports
     - name: Test with pytest
