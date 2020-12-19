@@ -18,10 +18,100 @@
                 "max_thrust": 261.0,
                 "surface_isp": 263.0,
                 "vacuum_isp": 299.0
+            },
+            "LR89-5 90%": {
+                "mass": 1.75,
+                "max_thrust": 184.5,
+                "surface_isp": 256.0,
+                "vacuum_isp": 290.0
+            },
+            "Vanguard-12 Able": {
+                "mass": 0.15,
+                "max_thrust": 6,
+                "surface_isp": 85,
+                "vacuum_isp": 270
+            },
+            "LR105": {
+                "mass": 0.95,
+                "max_thrust": 140,
+                "surface_isp": 220,
+                "vacuum_isp": 316
+            },
+            "LR105-nm": {
+                "mass": 0,
+                "max_thrust": 140,
+                "surface_isp": 220,
+                "vacuum_isp": 316
+            },
+            "LR101": {
+                "mass": 0.068,
+                "max_thrust": 10,
+                "surface_isp": 250,
+                "vacuum_isp": 290
+            },
+            "LR101-nm": {
+                "mass": 0,
+                "max_thrust": 10,
+                "surface_isp": 250,
+                "vacuum_isp": 290
+            },
+            "Agena-A-25": {
+                "mass": 0.1688,
+                "max_thrust": 16.5,
+                "surface_isp": 100,
+                "vacuum_isp": 240
+            },
+            "Agena-D-35": {
+                "mass": 0.175,
+                "max_thrust": 17.5,
+                "surface_isp": 85,
+                "vacuum_isp": 293
+            },
+            "Agena-D-4": {
+                "mass": 0.0345,
+                "max_thrust": 4,
+                "surface_isp": 85,
+                "vacuum_isp": 285
+            },
+            "Centaur-R-10A": {
+                "mass": 0.08,
+                "max_thrust": 17,
+                "surface_isp": 20,
+                "vacuum_isp": 425
+            },
+            "Centaur-R-10A-3": {
+                "mass": 0.08,
+                "max_thrust": 16.5,
+                "surface_isp": 20,
+                "vacuum_isp": 444
+            },
+            "Centaur-R-10A-4": {
+                "mass": 0.12,
+                "max_thrust": 23,
+                "surface_isp": 20,
+                "vacuum_isp": 449
             }
         },
         "Tanks":{
+            "Vanguard-100":{
+                "mass": 0.0625,
+                "max_fuel_volume": 45,
+                "max_oxidiser_volume": 55,
+                "fuel_type": "LiquidFuel"
+            },
             "Atlas-Tapered":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Base":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Small":{
                 "mass": 0.175,
                 "max_fuel_volume": 315,
                 "max_oxidiser_volume": 385,
@@ -32,6 +122,56 @@
                 "max_fuel_volume": 990,
                 "max_oxidiser_volume":1210,
                 "fuel_type": "LiquidFuel"
+            },
+            "Atlas-Medium":{
+                "mass": 0.175,
+                "max_fuel_volume": 315,
+                "max_oxidiser_volume": 385,
+                "fuel_type": "LiquidFuel"
+            },
+            "Agena-70W":{
+                "mass": 0.04375,
+                "max_fuel_volume": 31.5,
+                "max_oxidiser_volume": 38.5,
+                "fuel_type": "LiquidFuel"
+            },
+            "Agena-200B":{
+                "mass": 0.0875,
+                "max_fuel_volume": 63,
+                "max_oxidiser_volume": 77,
+                "fuel_type": "LiquidFuel"
+            },
+            "Agena-200D":{
+                "mass": 0.05,
+                "max_fuel_volume": 90,
+                "max_oxidiser_volume": 110,
+                "fuel_type": "LiquidFuel"
+            },
+            "Centaur-D-1440":{
+                "mass": 0.36,
+                "max_fuel_volume": 5400,
+                "max_oxidiser_volume": 360,
+                "fuel_type": "LqdHydrogen"
+            },
+            "Centaur-D-1800":{
+                "mass": 0.45,
+                "max_fuel_volume": 6750,
+                "max_oxidiser_volume": 450,
+                "fuel_type": "LqdHydrogen"
+            },
+            "Centaur-D-2160":{
+                "mass": 0.54,
+                "max_fuel_volume": 8100,
+                "max_oxidiser_volume": 540,
+                "fuel_type": "LqdHydrogen"
+            }
+        },
+        "Accessories":{
+            "Atlas-BoosterSkirt":{
+                "mass": 0.8
+            },
+            "Vanguard-4688 Fairing":{
+                "mass": 0.05
             }
         }
     },

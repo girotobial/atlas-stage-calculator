@@ -36,20 +36,16 @@ Clone the repository, install requirements into a Python virtual environment and
 ```cmd
 git clone https://github.com/opensomersault/atlas-stage-calculator.git
 cd atlas-stage-calculator
-python -m venv env
-env\Scripts\activate.bat
-pip install -r requirements.txt
-pytest ./
+python -m pip install pipenv
+pipenv install --dev
 ```
 
 #### On Linux
 ```sh
 git clone https://github.com/opensomersault/atlas-stage-calculator.git
 cd atlas-stage-calculator
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-pytest ./
+python3 -m pip install pipenv
+pipenv install --dev
 ```
 
 ### With Docker

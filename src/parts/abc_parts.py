@@ -1,22 +1,25 @@
-'''
+"""
 Base classes for parts
 
-'''
+"""
 from __future__ import annotations
+
 import abc
+import copy
+from typing import Optional
 
 
 class ABCPart(abc.ABC):
-    '''
+    """
     The base Part class
-    '''
+    """
 
     @property
-    def parent(self) -> ABCPart:
+    def parent(self) -> Optional[ABCPart]:
         return self._parent
 
     @parent.setter
-    def parent(self, parent: ABCPart):
+    def parent(self, parent: Optional[ABCPart]) -> None:
         self._parent = parent
 
     def add(self, part: ABCPart) -> None:
@@ -27,6 +30,9 @@ class ABCPart(abc.ABC):
 
     def is_composite(self) -> bool:
         return False
+
+    def copy(self) -> ABCPart:
+        return copy.deepcopy(self)
 
     @abc.abstractproperty
     def dry_mass(self) -> float:
@@ -42,4 +48,8 @@ class ABCPart(abc.ABC):
 
     @abc.abstractproperty
     def isp(self) -> float:
+        pass
+
+    @abc.abstractproperty
+    def exhaust_mass_flow_rate(self) -> float:
         pass
