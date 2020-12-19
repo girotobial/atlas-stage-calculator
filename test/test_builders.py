@@ -1,5 +1,7 @@
 import json
+
 import pytest
+
 import src.builders
 import src.parts
 from src.constants import CONFIG_PATH
@@ -26,14 +28,7 @@ def test_stagebuilder_init():
     assert type(builder._stage) is src.parts.Stage
 
 
-@pytest.mark.parametrize(
-    "tank_str",
-    [
-        tank
-        for tank
-        in config['Parts']['Tanks'].keys()
-    ]
-)
+@pytest.mark.parametrize("tank_str", [tank for tank in config["Parts"]["Tanks"].keys()])
 def test_stagebuilder_add_tanks_success(tank_str):
     # Setup
     builder = src.builders.StageBuilder()
@@ -50,18 +45,12 @@ def test_stagebuilder_add_tanks_success(tank_str):
     assert test_tank.propellant_mass == correct_tank.propellant_mass
     assert test_tank.thrust == correct_tank.thrust
     assert test_tank.isp == correct_tank.isp
-    assert (test_tank.exhaust_mass_flow_rate ==
-            correct_tank.exhaust_mass_flow_rate)
+    assert test_tank.exhaust_mass_flow_rate == correct_tank.exhaust_mass_flow_rate
     assert test_tank.is_composite() == correct_tank.is_composite()
 
 
 @pytest.mark.parametrize(
-    "engine_str",
-    [
-        engine
-        for engine
-        in config['Parts']['Engines'].keys()
-    ]
+    "engine_str", [engine for engine in config["Parts"]["Engines"].keys()]
 )
 def test_stagebuilder_add_engines_success(engine_str):
     # Setup
@@ -79,18 +68,12 @@ def test_stagebuilder_add_engines_success(engine_str):
     assert test_engine.propellant_mass == correct_engine.propellant_mass
     assert test_engine.thrust == correct_engine.thrust
     assert test_engine.isp == correct_engine.isp
-    assert (test_engine.exhaust_mass_flow_rate ==
-            correct_engine.exhaust_mass_flow_rate)
+    assert test_engine.exhaust_mass_flow_rate == correct_engine.exhaust_mass_flow_rate
     assert test_engine.is_composite() == correct_engine.is_composite()
 
 
 @pytest.mark.parametrize(
-    "accessory_str",
-    [
-        accessory
-        for accessory
-        in config['Parts']['Accessories'].keys()
-    ]
+    "accessory_str", [accessory for accessory in config["Parts"]["Accessories"].keys()]
 )
 def test_stagebuilder_add_accessory_success(accessory_str):
     # Setup
@@ -108,15 +91,17 @@ def test_stagebuilder_add_accessory_success(accessory_str):
     assert test_accessory.propellant_mass == correct_accessory.propellant_mass
     assert test_accessory.thrust == correct_accessory.thrust
     assert test_accessory.isp == correct_accessory.isp
-    assert (test_accessory.exhaust_mass_flow_rate ==
-            correct_accessory.exhaust_mass_flow_rate)
+    assert (
+        test_accessory.exhaust_mass_flow_rate
+        == correct_accessory.exhaust_mass_flow_rate
+    )
     assert test_accessory.is_composite() == correct_accessory.is_composite()
 
 
 def test_stage_builder_build_standard_not_standard():
     builder = src.builders.StageBuilder()
     with pytest.raises(ValueError, match="is not a standard stage"):
-        builder.build_standard('lol not a rocket')
+        builder.build_standard("lol not a rocket")
 
 
 # Vehicle Builder Tests
@@ -138,7 +123,7 @@ def test_vehicle_builder_product(vehicle_builder):
     assert type(builder.product) is src.parts.Vehicle
 
     # Check builder product resets
-    test_vehicle = src.parts.Vehicle(name='test', payload_mass=1)
+    test_vehicle = src.parts.Vehicle(name="test", payload_mass=1)
     builder._vehicle = test_vehicle
     # Should be the same on first call
     assert builder.product == test_vehicle
@@ -148,7 +133,7 @@ def test_vehicle_builder_product(vehicle_builder):
 
 def test_vehicle_builder_reset(vehicle_builder):
     builder = vehicle_builder
-    test_vehicle = src.parts.Vehicle('test', 1)
+    test_vehicle = src.parts.Vehicle("test", 1)
 
     builder._vehicle = test_vehicle
     assert builder._vehicle == test_vehicle
@@ -159,13 +144,13 @@ def test_vehicle_builder_reset(vehicle_builder):
 def test_vehicle_builder_build_standard_not_standard(vehicle_builder):
     builder = vehicle_builder
     with pytest.raises(ValueError, match="is not a standard vehicle"):
-        builder.build_standard('lol not a rocket')
+        builder.build_standard("lol not a rocket")
 
 
 def test_vehicle_builder_naming(vehicle_builder):
     builder = vehicle_builder
-    vehicle = builder.name('my_vehicle').product
-    assert vehicle.name == 'my_vehicle'
+    vehicle = builder.name("my_vehicle").product
+    assert vehicle.name == "my_vehicle"
 
 
 def test_vehicle_payload(vehicle_builder):
@@ -174,11 +159,6 @@ def test_vehicle_payload(vehicle_builder):
     assert vehicle.payload_mass == 25
 
 
-@pytest.mark.parametrize(
-    "vehicle",
-    [
-        *src.builders.VehicleBuilder._VEHICLE_DICT.keys()
-    ]
-)
+@pytest.mark.parametrize("vehicle", [*src.builders.VehicleBuilder._VEHICLE_DICT.keys()])
 def test_all_standard_vehicles_built(vehicle_builder, vehicle):
     vehicle_builder.build_standard(vehicle)
