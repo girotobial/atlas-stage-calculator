@@ -75,3 +75,8 @@ class Vehicle(Stage):
     @property
     def exhaust_mass_flow_rate(self) -> float:
         return self._parts[0].exhaust_mass_flow_rate
+
+    @property
+    def mass(self) -> float:
+        mass: float = self.propellant_mass + self.dry_mass
+        return mass
